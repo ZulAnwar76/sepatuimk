@@ -69,4 +69,29 @@ class CartController extends Controller
 
         return redirect()->route('cart.index')->with('success', 'Item removed from cart.');
     }
+
+    /**
+     * Tambahkan item ke keranjang dan langsung redirect ke cart.
+     */
+    public function buyNow(Request $request)
+    {
+        $request->validate([
+            'product_id' => 'required|exists:products,product_id',
+        ]);
+
+        // Cek apakah item sudah ada di keranjang
+        $existingCartItem = Cart::where('customer_id', Auth::id())
+            ->where('product_id', $request->product_id)
+            ->first();
+
+        if (!$existingCartItem) {
+            Cart::create([
+                'customer_id' => Auth::id(),
+                'product_id' => $request->product_id,
+            ]);
+        }
+
+        return redirect()->route('cart.index')->with('success', 'Product added and redirected to cart!');
+    }
 }
+

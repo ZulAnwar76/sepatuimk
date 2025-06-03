@@ -29,6 +29,6 @@ class User extends Authenticatable
     // Relasi dengan model Customer
     public function customer()
     {
-        return $this->hasOne(Customer::class, 'user_id', 'user_id');
+        return $this->hasOne(Customer::class, 'user_id');
     }
 }

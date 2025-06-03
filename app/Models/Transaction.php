@@ -33,6 +33,7 @@ class Transaction extends Model
     const STATUS_PENDING = 'pending';
     const STATUS_PAID = 'paid';
     const STATUS_APPROVED = 'approved';
+    const STATUS_REJECTED = 'reject';
 
     // Optional: Accessor to format price
     public function getTotalPriceFormattedAttribute()

@@ -13,7 +13,7 @@ return new class extends Migration
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('product_id');
             $table->string('payment_proof')->nullable(); // Changed from 'image' to 'payment_proof'
-            $table->enum('status', ['pending', 'paid', 'approved'])->default('pending');
+            $table->enum('status', ['rejected','pending', 'paid', 'approved'])->default('pending');
             $table->decimal('total_price', 10, 2);
             $table->foreign('customer_id')->references('customer_id')->on('customer')->onDelete('cascade');
             $table->foreign('product_id')->references('product_id')->on('products')->onDelete('cascade');
